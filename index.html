@@ -1,0 +1,924 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>胶体量子点发光二极管发光机理研究 · 论文可视化</title>
+<meta name="description" content="中国科学技术大学博士学位论文《胶体量子点发光二极管发光机理研究》的可视化解读：电激发瞬态吸收光谱、准费米能级劈裂、效率滚降与蓝光退化机制。">
+<link rel="stylesheet" href="assets/styles.css">
+<noscript><style>.reveal{opacity:1 !important;transform:none !important}</style></noscript>
+</head>
+<body>
+
+<!-- 背景 -->
+<div class="bg-fx">
+  <div class="orb b"></div>
+  <div class="orb g"></div>
+  <div class="orb r"></div>
+</div>
+<div class="progress" id="progress"></div>
+
+<!-- 导航 -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <div class="brand"><span class="dot"></span>QD-LED 发光机理 <span class="sub">博士论文可视化</span></div>
+    <div class="nav-links">
+      <a href="#overview">速览</a>
+      <a href="#background">研究背景</a>
+      <a href="#device">器件结构</a>
+      <a href="#mechanism">发光机理</a>
+      <a href="#methods">表征手段</a>
+      <a href="#finding-lowheat">低产热</a>
+      <a href="#finding-rolloff">效率滚降</a>
+      <a href="#finding-blue">蓝光退化</a>
+      <a href="#gallery">原文图表</a>
+      <a href="#glossary">术语</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ============ 首屏 ============ -->
+<header class="hero" id="top">
+  <canvas id="hero-canvas"></canvas>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="kicker">博士学位论文 · <b>中国科学技术大学</b> · 凝聚态物理</div>
+      <h1>
+        <span class="grad-text">胶体量子点发光二极管</span><br>发光机理研究
+        <span class="en">An investigation into the mechanism of electroluminescence from colloidal quantum dots</span>
+      </h1>
+      <p class="hero-lead">
+        量子点发光二极管（QD-LED）能同时做到高效率、高色纯度与溶液加工，却长期被"效率滚降"和"蓝光短命"卡住商业化。
+        这篇论文自研了一台<strong>电激发瞬态吸收光谱仪</strong>，第一次在器件通电工作时读出了各功能层里的电子、空穴与电场——
+        把发光过程从"黑箱"变成了可观测的物理图像。
+      </p>
+      <div class="meta-chips">
+        <span class="chip">完成时间 <b>2024-04-02</b></span>
+        <span class="chip">全文 <b>143 页 / 6 章</b></span>
+        <span class="chip">学科 <b>凝聚态物理</b></span>
+        <span class="chip">关键词 <b>发光机理 · 效率滚降 · 退化机制</b></span>
+      </div>
+      <div class="hero-cta">
+        <a class="btn primary" href="#overview">开始阅读 →</a>
+        <a class="btn" href="#finding-lowheat">直接看三大发现</a>
+        <a class="btn" href="#gallery">原文图表</a>
+      </div>
+    </div>
+    <div class="qd-visual">
+      <div class="qd-ring two"></div>
+      <div class="qd-ring"><span class="sat"></span></div>
+      <div class="qd-core"></div>
+      <div class="tagline">CdSe / ZnSe / ZnS · 纳米晶</div>
+    </div>
+  </div>
+  <div class="scroll-cue"><i></i>SCROLL</div>
+</header>
+
+<main>
+
+<!-- ============ 01 速览 ============ -->
+<section id="overview">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index">01 / Overview</div>
+      <h2 class="sec-title">一张图看懂这篇论文</h2>
+      <p class="sec-sub">论文先用一台新仪器建立"看得见"的微观表征方法，再据此解释三件事：为什么器件发热、为什么会效率滚降、蓝光为什么会坏。下面是全文最硬的几个数字。</p>
+    </div>
+
+    <div class="stat-grid reveal">
+      <div class="stat"><div class="v">23.8<small>%</small></div><div class="k">单层大尺寸合金量子点器件峰值外量子效率</div><div class="c">2 V 下测得，接近该结构出光极限</div></div>
+      <div class="stat"><div class="v">48 000<small>h</small></div><div class="k">红光器件 T95 工作寿命</div><div class="c">1000 cd m⁻² 初始亮度，加速因子 n≈1.71 外推</div></div>
+      <div class="stat"><div class="v">21–23<small>%</small></div><div class="k">能量转化效率（PCE）</div><div class="c">1000–6000 cd m⁻² 亮度区间内保持</div></div>
+      <div class="stat"><div class="v">1<small>°C</small></div><div class="k">6000 cd m⁻² 连续点亮 2 h 的温升</div><div class="c">同条件常规量子点器件升温 19.9 °C</div></div>
+      <div class="stat"><div class="v">≈100<small>meV</small></div><div class="k">电子准费米能级劈裂的提升量</div><div class="c">电激发/光激发瞬态吸收实测对比</div></div>
+      <div class="stat"><div class="v">23<small>% / 41 022 h</small></div><div class="k">PBO 中间层纯蓝器件的 EQE 与 T50</div><div class="c">458 nm 纯蓝，100 cd m⁻² 初始亮度</div></div>
+      <div class="stat"><div class="v">95 161<small>h</small></div><div class="k">低导带 CdSeS 蓝光器件 T50</div><div class="c">约为 CdSeZn 器件的 9 倍</div></div>
+      <div class="stat"><div class="v">0.1–0.3</div><div class="k">效率滚降发生时量子点的平均电子数</div><div class="c">双电子占据率仅 1.6%–3.3% → 俄歇复合被排除</div></div>
+    </div>
+
+    <div class="grid g3 reveal" style="margin-top:26px">
+      <div class="card"><div class="num">FINDING 01</div><h3>造一台能"看见"载流子的仪器</h3><p>基于泵浦-探测思想发明电激发瞬态吸收光谱仪（EE-TA），把 ΔA 信号拆成"载流子填充引起的漂白"与"电场引起的斯塔克效应"两部分，从而分层读出各功能层的载流子浓度、注入动力学与电场分布。</p></div>
+      <div class="card"><div class="num">FINDING 02</div><h3>少放几个发光中心，反而更亮更冷</h3><p>理论推导表明发光强度正比于准费米能级劈裂、而亮度与发光中心密度成反比。改用大尺寸单层全梯度合金量子点后，低电压下亮度大幅提升，产热骤降，寿命随之延长。</p></div>
+      <div class="card"><div class="num">FINDING 03</div><h3>滚降与蓝光退化，元凶都是"高能电子泄漏"</h3><p>电子因强声子瓶颈滞留在高能级，越过高势垒泄漏进有机空穴传输层：既直接损失效率（滚降），又破坏空穴传输层（蓝光退化）。限域高能电子、降低电子平均能量即可同时改善两者。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 研究背景 ============ -->
+<section id="background" class="tight">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index">02 / Background</div>
+      <h2 class="sec-title">量子点为什么能发光：把尺寸当调色盘</h2>
+      <p class="sec-sub">量子点是三维受限的半导体纳米晶。尺寸越小，量子限域越强，带边跃迁能量越高——于是同一个材料体系，靠改变粒径就能从蓝光调到红光。</p>
+    </div>
+
+    <div class="qd-lab reveal">
+      <div>
+        <div class="qd-stage">
+          <div class="halo"></div>
+          <div class="qd-dot" id="qd-dot"></div>
+        </div>
+        <div class="qd-readout" style="margin-top:14px">
+          量子点直径 <b id="qd-size">6.0</b> nm<br>
+          发光峰位 <b id="qd-wl">590</b> nm · <span id="qd-color">橙黄光</span>
+        </div>
+      </div>
+      <div>
+        <h3 style="margin-top:0">拖动滑块，看量子点"变色"</h3>
+        <p style="color:var(--text-dim);font-size:14.8px">
+          量子限域效应由 Efros 与 Ekimov 用考虑库仑相互作用的三维无限深势阱模型解释：尺寸减小时最低束缚态能量升高，带边光跃迁能量随之增大。
+          这也是红、绿、蓝三色量子点可以用同一套化学体系分别合成的物理基础。
+        </p>
+        <input type="range" id="qd-range" min="2" max="10" step="0.1" value="6" aria-label="量子点直径">
+        <div class="ruler"><span>2 nm　蓝光</span><span>6 nm　黄光</span><span>10 nm　红光</span></div>
+        <div class="spectrum">
+          <svg viewBox="0 0 600 120" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="specGrad" x1="0" y1="0" x2="1" y2="0">
+                <stop offset="0%" stop-color="#7a4bff"/>
+                <stop offset="18%" stop-color="#2f7bff"/>
+                <stop offset="38%" stop-color="#31d0ff"/>
+                <stop offset="55%" stop-color="#35e08a"/>
+                <stop offset="72%" stop-color="#ffd24a"/>
+                <stop offset="86%" stop-color="#ff7a3d"/>
+                <stop offset="100%" stop-color="#ff3b5c"/>
+              </linearGradient>
+            </defs>
+            <rect x="0" y="96" width="600" height="16" fill="url(#specGrad)" opacity="0.85" rx="4"/>
+            <path id="spec-curve" fill="none" stroke="#eaf1ff" stroke-width="2" opacity="0.9" d=""></path>
+            <line id="spec-marker" x1="300" y1="8" x2="300" y2="96" stroke="#ffffff" stroke-width="1.4" stroke-dasharray="5 4"></line>
+            <text x="8" y="26" fill="#6f7d96" font-size="12" font-family="monospace">PL intensity</text>
+            <text x="8" y="112" fill="#6f7d96" font-size="11" font-family="monospace">400 nm</text>
+            <text x="520" y="112" fill="#6f7d96" font-size="11" font-family="monospace">700 nm</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="sec-head reveal" style="margin-top:56px">
+      <h2 class="sec-title" style="font-size:clamp(22px,2.6vw,30px)">商业化路上卡着六道关</h2>
+      <p class="sec-sub">论文绪论系统梳理了 QD-LED 走向市场必须解决的问题，也解释了"机理不清"为什么会成为连锁瓶颈。</p>
+    </div>
+
+    <div class="grid g3 reveal">
+      <div class="card"><div class="num">01 功耗</div><h3>降低启亮电压</h3><p>空穴传输层 HOMO 与量子点价带之间存在约 <b>0.5–1.3 eV</b> 的巨大注入势垒，靠热辅助空穴注入才能越过。降低势垒或选用低带边简并度的有机空穴传输层材料可降低启亮电压。</p></div>
+      <div class="card"><div class="num">02 内量子效率</div><h3>PLQY ≠ 器件效率</h3><p>高 PLQY 量子点未必做出高效器件，而带缺陷量子点却可能接近 100% 内量子效率：电场使波函数移向壳层表面、带电激子俄歇复合、经带尾态漏电、界面电荷转移引起 PL 猝灭，都会让电致发光与光致发光"对不上"。</p></div>
+      <div class="card"><div class="num">03 外耦合</div><h3>20% 上限已被打破</h3><p>Greenham 模型给出外耦合效率约 1/(2n²)（n≈1.5 时约 20%）。Tanaka 报道 29% EQE、宋娇娇报道 30.9% 红色 QD-LED 后，传递矩阵计算表明合适折射率与厚度下可超 30%，关键在于提升<b>面内偶极子取向</b>比例（各向同性仅 2/3，OLED 已达 77%）。</p></div>
+      <div class="card"><div class="num">04 蓝光寿命</div><h3>全彩显示的最大瓶颈</h3><p>旋涂红/绿 QD-LED 的 T50 已达 1.25 亿小时与 257 万小时，而蓝光只有 80 377 h；喷墨打印的蓝光甚至只有 46 h。蓝光量子点带隙大，电荷积累与漏电更严重，常用有机传输层的 C–N 键带负电时键能变弱、易断裂。</p></div>
+      <div class="card"><div class="num">05 无镉化</div><h3>RoHS 限镉 100 ppm</h3><p>高性能器件多用 CdSe 基量子点，而欧盟 RoHS 指令限定电子元件中镉浓度不超过 100 ppm。InP 基红光、ZnSeTe 基蓝光在 HF 辅助壳层生长下，EQE 峰值已分别达到 21.4% 与 20.2%。</p></div>
+      <div class="card"><div class="num">06 稳定性</div><h3>ZnO 纳米颗粒的两面性</h3><p>几乎所有高性能 QD-LED 都用 3–6 nm 的 ZnO/ZnMgO 纳米颗粒作电子传输层，但其表面悬空键多、近乎非晶、极不稳定，带来难以预测的亮度变化；结晶度更好的溅射 ZnO 反而效率与寿命更差。</p></div>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-top:26px">
+      <figure class="fig" data-cap="图1.4 胶体量子点的应用领域：显示、照明、传感、太阳能、生物标记等。">
+        <img src="assets/figures/fig1-04-qd-applications.png" alt="胶体量子点的应用领域" loading="lazy">
+        <figcaption><b>图1.4</b> 胶体量子点的应用领域</figcaption>
+      </figure>
+      <figure class="fig" data-cap="图1.9 QD-LED 可能的退化机制：（a）红/蓝器件费米能级劈裂与载流子分布差异；（b）电子经能量无序带尾态泄漏到 TFB；（c）常用有机空穴传输层中脆弱的 C–N 键；（d）常用空穴传输层材料及化学结构。">
+        <img src="assets/figures/fig1-09-degradation.png" alt="QD-LED 可能的退化机制" loading="lazy">
+        <figcaption><b>图1.9</b> QD-LED 可能的退化机制（含 C–N 键与带尾态漏电示意）</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 器件结构 ============ -->
+<section id="device">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index">03 / Device</div>
+      <h2 class="sec-title">器件长什么样：五层夹心，各司其职</h2>
+      <p class="sec-sub">典型结构为 ITO / PEDOT:PSS / TFB / 量子点 / ZnO(ZnMgO) / Al。点击任意一层，看它在发光过程中扮演什么角色、以及它如何参与退化。</p>
+    </div>
+
+    <div class="device-wrap reveal">
+      <div class="device-stack" id="stack">
+        <div class="layer cathode" data-layer="cathode"><span class="swatch"></span><span class="lname">阴极 Al</span><span class="lmat">100 nm</span></div>
+        <div class="layer etl" data-layer="etl"><span class="swatch"></span><span class="lname">电子传输层 ZnO / ZnMgO</span><span class="lmat">50–55 nm</span></div>
+        <div class="layer eml" data-layer="eml"><span class="swatch"></span><span class="lname">量子点发光层</span><span class="lmat">单层密堆积 32 nm</span></div>
+        <div class="layer htl" data-layer="htl"><span class="swatch"></span><span class="lname">空穴传输层 TFB / PFDP</span><span class="lmat">18–25 nm</span></div>
+        <div class="layer hil" data-layer="hil"><span class="swatch"></span><span class="lname">空穴注入层 PEDOT:PSS</span><span class="lmat">18–35 nm</span></div>
+        <div class="layer anode" data-layer="anode"><span class="swatch"></span><span class="lname">阳极 ITO（玻璃基底）</span><span class="lmat">75 nm</span></div>
+      </div>
+      <div class="layer-info" id="layer-info">
+        <div class="li-k">LAYER</div>
+        <h3>点击左侧任意一层</h3>
+        <p>器件由"阳极—空穴注入层—空穴传输层—量子点发光层—电子传输层—阴极"构成。电子从 ZnO 一侧注入，空穴从 TFB 一侧注入，二者在量子点中相遇形成激子并辐射复合发光。</p>
+        <ul>
+          <li>电子注入势垒小，注入极快（&lt;100 ns）</li>
+          <li>空穴注入势垒大（0.5–1.3 eV），是决定发光启亮延时的"慢组分"</li>
+          <li>正是这个不对称，埋下了效率滚降与蓝光退化的种子</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-top:26px">
+      <div class="card">
+        <div class="num">两条路径</div>
+        <h3>激子是怎么形成的</h3>
+        <p><b>① Förster 共振能量转移：</b>载流子穿过量子点层，在传输层中先形成激子，再通过能量转移把能量传回量子点，有效距离约 10 nm。Madigan 等人把单层量子点嵌入空穴传输层、距界面不到 10 nm，使 EQE 提高 50% 以上。</p>
+        <p style="margin-top:10px"><b>② 电荷直接注入：</b>电子与空穴先后注入同一个量子点形成激子，被认为是杂化结构的主要机制。金一政等人证明电子先注入形成带负电中间态，再经库仑吸引注入空穴。</p>
+      </div>
+      <div class="card">
+        <div class="num">一个反常现象</div>
+        <h3>电压低于带隙，也能发光</h3>
+        <p>使用 ZnO 作电子传输层的 QD-LED 在低于量子点带隙的驱动电压下就出现电致发光（能量上转换），且内量子效率超过 50%——由此排除了俄歇辅助与三重态-三重态湮灭机制。目前较一致的解释是<b>热辅助的能量上转换</b>：注入带边的载流子通过与声子相互作用与电荷碰撞达到热平衡分布，从而发出高于驱动电压对应能量的光子。</p>
+      </div>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-top:26px">
+      <figure class="fig" data-cap="图1.5 有机-无机杂化 QD-LED 结构及各功能层能级示意图。">
+        <img src="assets/figures/fig1-05-hybrid-device.png" alt="杂化 QD-LED 结构与能级" loading="lazy">
+        <figcaption><b>图1.5</b> 有机-无机杂化 QD-LED 结构及各功能层能级</figcaption>
+      </figure>
+      <figure class="fig" data-cap="图1.13 电激发原理图：载流子在传输层中形成激子后经能量转移传回量子点，以及电荷直接注入量子点形成激子两条路径。">
+        <img src="assets/figures/fig1-13-el-paths.png" alt="电激发原理图" loading="lazy">
+        <figcaption><b>图1.13</b> 电激发的两条路径：能量转移 vs 电荷直接注入</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 机理 ============ -->
+<section id="mechanism" class="tight">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index">04 / Mechanism</div>
+      <h2 class="sec-title">发光机理：七个关键环节</h2>
+      <p class="sec-sub">量子点是分散的发光中心，载流子难以横向迁移，传统半导体的漂移扩散与复合模型不再适用——决定发光的主要是"激子生成概率"。以下七个环节构成本文的物理主线。</p>
+    </div>
+
+    <div class="tabs reveal" id="mech-tabs">
+      <button class="tab on" data-tab="m1">载流子注入</button>
+      <button class="tab" data-tab="m2">激子形成与复合</button>
+      <button class="tab" data-tab="m3">准费米能级劈裂</button>
+      <button class="tab" data-tab="m4">高能电子泄漏</button>
+      <button class="tab" data-tab="m5">俄歇复合</button>
+      <button class="tab" data-tab="m6">电场诱导猝灭</button>
+      <button class="tab" data-tab="m7">能量转移与漏电</button>
+    </div>
+
+    <!-- m1 -->
+    <div class="tab-panel on" id="m1">
+      <div class="mech">
+        <div>
+          <h3>电子跑得快，空穴跑得慢</h3>
+          <p>3 V、10 µs 电脉冲下，电子在 <b>&lt;100 ns</b> 内就注入量子点；而器件要过 <b>约 600 ns</b> 才开始发光，并在 <b>约 3 µs</b> 达到稳定。原因在于空穴必须先在传输层中大量累积、再越过与量子点之间的价带势垒，且空穴迁移率低于电子。</p>
+          <p>瞬态电致发光的动力学由少数载流子决定，因此在 II-VI 量子点器件中，Tr-EL 的上升沿实际上是一把"空穴注入秒表"——本文后面判断蓝光退化，靠的正是这把秒表。</p>
+          <div class="pill-row">
+            <span class="pill cool">电子注入 &lt;100 ns</span>
+            <span class="pill hot">空穴启亮延时 ≈600 ns</span>
+            <span class="pill">稳定 ≈3 µs</span>
+            <span class="pill">脉冲后衰减 ≈2 µs</span>
+          </div>
+        </div>
+        <div class="diagram">
+          <svg viewBox="0 0 420 260" role="img" aria-label="能级与载流子注入示意图">
+            <defs>
+              <linearGradient id="g-e" x1="0" x2="1"><stop offset="0" stop-color="#31d0ff"/><stop offset="1" stop-color="#2f7bff"/></linearGradient>
+            </defs>
+            <rect x="0" y="0" width="420" height="260" fill="none"/>
+            <line x1="40" y1="70" x2="380" y2="70" stroke="#2f7bff" stroke-width="2"/>
+            <text x="40" y="60" fill="#6f7d96" font-size="12" font-family="monospace">ETL LUMO</text>
+            <line x1="40" y1="200" x2="380" y2="200" stroke="#ff5f7e" stroke-width="2"/>
+            <text x="40" y="222" fill="#6f7d96" font-size="12" font-family="monospace">HTL HOMO</text>
+            <rect x="170" y="100" width="90" height="80" rx="8" fill="rgba(49,208,255,.10)" stroke="rgba(49,208,255,.5)"/>
+            <text x="186" y="147" fill="#eaf1ff" font-size="14">量子点</text>
+            <line x1="215" y1="34" x2="215" y2="98" stroke="url(#g-e)" stroke-width="3" marker-end="url(#arrow)"/>
+            <defs><marker id="arrow" markerWidth="9" markerHeight="9" refX="5" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#31d0ff"/></marker></defs>
+            <text x="226" y="52" fill="#31d0ff" font-size="12" font-family="monospace">e⁻ 快</text>
+            <path d="M215 246 L215 184" stroke="#ff5f7e" stroke-width="3" marker-end="url(#arrow2)"/>
+            <defs><marker id="arrow2" markerWidth="9" markerHeight="9" refX="5" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ff5f7e"/></marker></defs>
+            <text x="226" y="238" fill="#ff5f7e" font-size="12" font-family="monospace">h⁺ 慢（势垒 0.5–1.3 eV）</text>
+            <path d="M150 140 L110 140" stroke="#35e08a" stroke-width="2" marker-end="url(#arrow3)"/>
+            <defs><marker id="arrow3" markerWidth="9" markerHeight="9" refX="5" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#35e08a"/></marker></defs>
+            <text x="18" y="132" fill="#35e08a" font-size="12" font-family="monospace">hν</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- m2 -->
+    <div class="tab-panel" id="m2">
+      <div class="mech">
+        <div>
+          <h3>把经典复合公式改一个字</h3>
+          <p>块状半导体中电子与空穴可自由相遇，复合速率写作 R = k·n·p。但在 QD-LED 中量子点是空间分离的发光中心，电子与空穴必须先进入<b>同一个量子点</b>才能复合，于是需要乘上激子形成概率 r。</p>
+          <div class="formula">R = r · k · n · p　（r：激子形成概率）</div>
+          <p>本文据此提出蒙特-卡洛量子点激子复合模型：以注入载流子数除以量子点总数作为注入概率，在 100×100 个量子点的样本中逐步模拟随机注入与复合，复现了激子产生速率与剩余电荷数的演化。</p>
+        </div>
+        <div class="diagram">
+          <svg viewBox="0 0 420 260" role="img" aria-label="蒙特卡洛随机注入示意">
+            <g fill="rgba(255,255,255,.06)" stroke="rgba(255,255,255,.16)">
+              <circle cx="90" cy="70" r="26"/><circle cx="170" cy="70" r="26"/><circle cx="250" cy="70" r="26"/><circle cx="330" cy="70" r="26"/>
+              <circle cx="90" cy="150" r="26"/><circle cx="170" cy="150" r="26"/><circle cx="250" cy="150" r="26"/><circle cx="330" cy="150" r="26"/>
+              <circle cx="90" cy="230" r="26"/><circle cx="170" cy="230" r="26"/><circle cx="250" cy="230" r="26"/><circle cx="330" cy="230" r="26"/>
+            </g>
+            <circle cx="170" cy="70" r="14" fill="rgba(49,208,255,.55)"/>
+            <circle cx="330" cy="150" r="14" fill="rgba(255,95,126,.55)"/>
+            <circle cx="250" cy="230" r="14" fill="rgba(53,224,138,.55)"/>
+            <text x="150" y="74" fill="#04121b" font-size="12" font-family="monospace">e</text>
+            <text x="310" y="154" fill="#04121b" font-size="12" font-family="monospace">h</text>
+            <text x="222" y="234" fill="#04121b" font-size="12" font-family="monospace">e+h</text>
+            <text x="20" y="30" fill="#6f7d96" font-size="12" font-family="monospace">N = 100 × 100 QDs</text>
+            <text x="230" y="30" fill="#35e08a" font-size="12" font-family="monospace">→ 激子 → hν</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- m3 -->
+    <div class="tab-panel" id="m3">
+      <div class="mech">
+        <div>
+          <h3>发光强度由准费米能级劈裂决定</h3>
+          <p>电子与空穴的准费米能级分别为 η<sub>C</sub> 与 η<sub>V</sub>，其劈裂 E<sub>FS</sub> = η<sub>C</sub> − η<sub>V</sub>。由爱因斯坦吸收、受激辐射、自发辐射速率与热平衡条件可以解出光子态密度，最终得到发射强度随劈裂指数增长：</p>
+          <div class="formula">I(ℏω) ≈ (ℏω)³ / [ exp((ℏω − E<sub>FS</sub>)/kT) − 1 ]　→　E<sub>FS</sub> ↑，光强 ↑</div>
+          <p>进一步推导给出 <b>I = r · n<sub>e</sub> · n<sub>h</sub>，且系数 r ∝ 1/n²</b>（n 为量子点密度）：在注入电荷不变时，发光层中量子点越少，单个量子点的带电填充比例越高，劈裂越大，亮度越高。这是"用大尺寸量子点换取低电压高亮度"的理论出发点。</p>
+          <div class="pill-row">
+            <span class="pill cool">发光中心密度 ↓</span>
+            <span class="pill cool">平均电子数 ↑</span>
+            <span class="pill cool">劈裂 ↑ · 亮度 ↑</span>
+          </div>
+        </div>
+        <div class="diagram">
+          <svg viewBox="0 0 420 260" role="img" aria-label="准费米能级劈裂示意图">
+            <line x1="40" y1="60" x2="200" y2="60" stroke="#2f7bff" stroke-width="2"/>
+            <line x1="40" y1="90" x2="200" y2="90" stroke="#31d0ff" stroke-width="2" stroke-dasharray="6 4"/>
+            <text x="206" y="64" fill="#2f7bff" font-size="12" font-family="monospace">E_C</text>
+            <text x="206" y="94" fill="#31d0ff" font-size="12" font-family="monospace">η_C</text>
+            <line x1="40" y1="200" x2="200" y2="200" stroke="#ff5f7e" stroke-width="2"/>
+            <line x1="40" y1="170" x2="200" y2="170" stroke="#ffc45e" stroke-width="2" stroke-dasharray="6 4"/>
+            <text x="206" y="204" fill="#ff5f7e" font-size="12" font-family="monospace">E_V</text>
+            <text x="206" y="174" fill="#ffc45e" font-size="12" font-family="monospace">η_V</text>
+            <line x1="120" y1="90" x2="120" y2="170" stroke="#35e08a" stroke-width="3"/>
+            <line x1="108" y1="90" x2="132" y2="90" stroke="#35e08a" stroke-width="3"/>
+            <line x1="108" y1="170" x2="132" y2="170" stroke="#35e08a" stroke-width="3"/>
+            <text x="138" y="134" fill="#35e08a" font-size="13" font-family="monospace">E_FS</text>
+            <path d="M300 130 q30 -30 60 0 t60 0" fill="none" stroke="#9b7bff" stroke-width="2"/>
+            <text x="292" y="170" fill="#6f7d96" font-size="12" font-family="monospace">hν ∝ exp(E_FS/kT)</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- m4 -->
+    <div class="tab-panel" id="m4">
+      <div class="mech">
+        <div>
+          <h3>声子瓶颈：电子赖在高能级不走</h3>
+          <p>电子被注入量子点后，本应通过发射声子迅速弛豫到导带底。但当低能态已被填满、或声子通道不足时，电子会长时间停留在<b>高能级</b>——这就是声子瓶颈效应。过去基于光激发的研究中电子与空穴成对产生，空穴辅助的超快弛豫让这一效应很难观察；本文的电激发过程里电子浓度远大于空穴浓度，漂白信号主要来自"没有空穴的量子点"，因而首次直接观测到了它。</p>
+          <p>后果很严重：高能电子的波函数更离域、更容易越过空穴传输层势垒泄漏出去。电压越高，高能电子占比越大，泄漏概率越高。</p>
+          <div class="pill-row">
+            <span class="pill">低温下可见除基态外的 3 个高能级</span>
+            <span class="pill hot">平均电子数仅 0.1–0.3</span>
+            <span class="pill hot">泄漏 → 效率损失</span>
+          </div>
+        </div>
+        <div class="diagram">
+          <svg viewBox="0 0 420 260" role="img" aria-label="声子瓶颈与电子泄漏示意图">
+            <line x1="30" y1="46" x2="250" y2="46" stroke="#2f7bff" stroke-width="2"/>
+            <line x1="30" y1="96" x2="180" y2="96" stroke="#2f7bff" stroke-width="2" opacity=".7"/>
+            <line x1="30" y1="146" x2="180" y2="146" stroke="#2f7bff" stroke-width="2" opacity=".7"/>
+            <line x1="30" y1="196" x2="180" y2="196" stroke="#2f7bff" stroke-width="2"/>
+            <text x="256" y="50" fill="#6f7d96" font-size="11" font-family="monospace">高能级</text>
+            <text x="188" y="200" fill="#6f7d96" font-size="11" font-family="monospace">导带底</text>
+            <circle cx="110" cy="46" r="9" fill="#31d0ff"/>
+            <text x="104" y="50" fill="#04121b" font-size="11" font-family="monospace">e</text>
+            <path d="M110 46 C 170 30, 210 40, 246 40" fill="none" stroke="#ff5f7e" stroke-width="2.6" marker-end="url(#arrow4)"/>
+            <defs><marker id="arrow4" markerWidth="9" markerHeight="9" refX="5" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ff5f7e"/></marker></defs>
+            <text x="252" y="30" fill="#ff5f7e" font-size="12" font-family="monospace">泄漏到 HTL</text>
+            <path d="M130 60 q10 22 0 42" fill="none" stroke="#6f7d96" stroke-width="1.6" stroke-dasharray="4 4"/>
+            <text x="20" y="236" fill="#6f7d96" font-size="12" font-family="monospace">声子瓶颈：弛豫通道不足</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- m5 -->
+    <div class="tab-panel" id="m5">
+      <div class="mech">
+        <div>
+          <h3>俄歇复合：曾被当作主因，实测被排除</h3>
+          <p>当量子点中已有激子、又进来一个额外载流子时，激子复合的能量会转移给该载流子，把它激发到高能级并最终以热耗散掉——这就是俄歇复合。它长期被视为效率滚降与蓝光短命的头号嫌疑。</p>
+          <p>本文用漂白信号幅度定量标定量子点中的平均电子数：出现效率滚降时 <b>&lt;N<sub>e</sub>&gt; 只有 0.1–0.3</b>；按泊松分布，7 V 下能被两个电子占据的量子点仅占 <b>3.3%</b>，滚降起始电压处更低至 <b>约 1.6%</b>，且呈单激子衰减动力学。既然多载流子占据概率如此低，俄歇复合就不可能是滚降主因。</p>
+        </div>
+        <div class="diagram">
+          <svg viewBox="0 0 420 260" role="img" aria-label="俄歇复合示意图">
+            <circle cx="140" cy="130" r="72" fill="rgba(49,208,255,.07)" stroke="rgba(49,208,255,.4)"/>
+            <circle cx="126" cy="112" r="10" fill="#31d0ff"/><text x="120" y="116" fill="#04121b" font-size="11" font-family="monospace">e</text>
+            <circle cx="154" cy="112" r="10" fill="#31d0ff"/><text x="148" y="116" fill="#04121b" font-size="11" font-family="monospace">e</text>
+            <circle cx="140" cy="158" r="10" fill="#ff5f7e"/><text x="134" y="162" fill="#04121b" font-size="11" font-family="monospace">h</text>
+            <path d="M154 122 C 176 96, 190 72, 196 58" fill="none" stroke="#ffc45e" stroke-width="2.6" marker-end="url(#arrow5)"/>
+            <defs><marker id="arrow5" markerWidth="9" markerHeight="9" refX="5" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ffc45e"/></marker></defs>
+            <text x="204" y="56" fill="#ffc45e" font-size="12" font-family="monospace">能量转移给 e⁻</text>
+            <text x="232" y="120" fill="#6f7d96" font-size="12" font-family="monospace">非辐射 · 产热</text>
+            <text x="232" y="146" fill="#35e08a" font-size="12" font-family="monospace">实测概率很低</text>
+            <text x="30" y="234" fill="#6f7d96" font-size="12" font-family="monospace">双电子占据率：1.6% → 3.3%</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- m6 -->
+    <div class="tab-panel" id="m6">
+      <div class="mech">
+        <div>
+          <h3>强电场会削弱发光，但正向偏压下没那么强</h3>
+          <p>电场会削弱核对波函数的束缚，使电子与空穴波函数向壳层表面移动，增加表面缺陷捕获与载流子泄漏的概率。反偏压下的光致发光测试确实看到效率下降，因此"电场诱导猝灭"一度被用来解释效率滚降。</p>
+          <p>但本文通过分解电激发瞬态吸收光谱中的斯塔克效应信号发现：<b>7 V 正向偏压下的斯塔克效应仅相当于 −0.2 至 −0.5 V 反偏压</b>；比较加与不加 −0.3 V 反偏压的光致发光强度，下降 <b>不到 1%</b>。原因是正向偏压抵消了内建电场，注入载流子又有介电屏蔽。故电场猝灭也不是滚降主因。</p>
+          <div class="formula">ΔA = 2[σ(E,λ)(1 − N<sub>e</sub>) − σ]·n<sub>QD</sub>l<sub>QD</sub> / 2.303　→ 漂白项 + 一阶/二阶斯塔克项</div>
+        </div>
+        <div class="diagram">
+          <svg viewBox="0 0 420 260" role="img" aria-label="斯塔克效应与波函数示意图">
+            <ellipse cx="120" cy="130" rx="64" ry="52" fill="rgba(155,123,255,.08)" stroke="rgba(155,123,255,.35)"/>
+            <path d="M60 130 q30 -34 60 0 t60 0" fill="none" stroke="#31d0ff" stroke-width="2"/>
+            <path d="M60 152 q30 -30 60 0 t60 0" fill="none" stroke="#ff5f7e" stroke-width="2"/>
+            <text x="52" y="212" fill="#6f7d96" font-size="12" font-family="monospace">无外场：波函数重叠好</text>
+            <ellipse cx="300" cy="130" rx="64" ry="52" fill="rgba(255,95,126,.08)" stroke="rgba(255,95,126,.35)"/>
+            <path d="M240 130 q18 -30 34 0 t34 0 20 0" fill="none" stroke="#31d0ff" stroke-width="2"/>
+            <path d="M240 156 q30 -26 60 0 t40 0" fill="none" stroke="#ff5f7e" stroke-width="2"/>
+            <line x1="236" y1="60" x2="364" y2="60" stroke="#ffc45e" stroke-width="2" marker-end="url(#arrow6)"/>
+            <defs><marker id="arrow6" markerWidth="9" markerHeight="9" refX="5" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ffc45e"/></marker></defs>
+            <text x="368" y="64" fill="#ffc45e" font-size="12" font-family="monospace">E</text>
+            <text x="244" y="212" fill="#6f7d96" font-size="12" font-family="monospace">强场：波函数分离</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- m7 -->
+    <div class="tab-panel" id="m7">
+      <div class="mech">
+        <div>
+          <h3>两条"不发光"的旁路：能量转移与带尾态漏电</h3>
+          <p><b>Förster 共振能量转移：</b>也可反向发生——传输层中形成的激子把能量传给量子点发光。它强烈依赖供体-受体距离（有效距离约 10 nm），在量子点层很薄、使用有机传输层的器件中较常见。</p>
+          <p><b>带尾态漏电：</b>有机空穴传输层的 LUMO 本应比量子点导带高约 1.0 eV，理论上难以漏电；但有机分子的能量无序显著增加了漏电概率——电子可经空穴传输层的带尾态泄漏而不形成激子，造成 PL 与 EL 效率的差异。蓝光量子点导带能级更高，漏电更易发生。采用低电子亲和力、刚性更高的 PF8Cz 作空穴传输层可有效抑制漏电。</p>
+          <p><b>界面电荷转移引起的 PL 猝灭：</b>传输层与量子点间若存在有效电荷转移，量子点会带上净电荷，光激发产生的激子与已有电荷结合成不发光的带电激子。但在电致发光中电子与空穴并非同时注入，带电量子点更倾向于注入相反电荷形成发光激子，因此这种猝灭并不必然损害内量子效率。</p>
+        </div>
+        <div class="diagram">
+          <svg viewBox="0 0 420 260" role="img" aria-label="带尾态漏电示意图">
+            <rect x="40" y="40" width="150" height="180" rx="10" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.14)"/>
+            <rect x="230" y="40" width="150" height="180" rx="10" fill="rgba(49,208,255,.07)" stroke="rgba(49,208,255,.35)"/>
+            <text x="86" y="62" fill="#6f7d96" font-size="12" font-family="monospace">空穴传输层</text>
+            <text x="272" y="62" fill="#6f7d96" font-size="12" font-family="monospace">量子点</text>
+            <line x1="40" y1="106" x2="190" y2="106" stroke="#ff5f7e" stroke-width="2"/>
+            <line x1="230" y1="86" x2="380" y2="86" stroke="#2f7bff" stroke-width="2"/>
+            <circle cx="252" cy="86" r="8" fill="#31d0ff"/>
+            <path d="M252 86 C 220 84, 200 100, 176 112" fill="none" stroke="#ffc45e" stroke-width="2.4" marker-end="url(#arrow7)"/>
+            <defs><marker id="arrow7" markerWidth="9" markerHeight="9" refX="5" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#ffc45e"/></marker></defs>
+            <g stroke="rgba(255,255,255,.25)" stroke-dasharray="3 5">
+              <line x1="60" y1="106" x2="60" y2="150"/><line x1="92" y1="106" x2="92" y2="164"/>
+              <line x1="124" y1="106" x2="124" y2="140"/><line x1="156" y1="106" x2="156" y2="172"/>
+            </g>
+            <text x="52" y="196" fill="#6f7d96" font-size="12" font-family="monospace">带尾态（能量无序）</text>
+            <text x="228" y="238" fill="#ffc45e" font-size="12" font-family="monospace">电子经带尾态泄漏 → 不发光</text>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 表征手段 ============ -->
+<section id="methods">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index">05 / Method</div>
+      <h2 class="sec-title">把"看不见"变成"看得见"：电激发瞬态吸收光谱</h2>
+      <p class="sec-sub">这是全文的方法学基石，也是理解后面所有结论的前提：用一束电脉冲"泵浦"器件、一束超连续白光"探测"器件，从吸光度的变化里反推出每一层里有多少载流子、电场有多强。</p>
+    </div>
+
+    <div class="grid g3 reveal">
+      <div class="card"><div class="num">PUMP</div><h3>电脉冲泵浦</h3><p>任意波形发生器产生 <b>1 kHz、10 µs</b> 电脉冲驱动器件。脉冲间隔远大于半导体中电荷的自然耗散时间，保证每次测量前电荷完全弛豫；10 µs 宽度足以让各层注入载流子达到平衡。</p></div>
+      <div class="card"><div class="num">PROBE</div><h3>超连续白光探测</h3><p>Leukos 超连续白光激光器以 <b>2 kHz</b> 输出 <b>350–2500 nm</b> 探测光，覆盖紫外到近红外；两台高速线阵列相机分别采集透过器件的信号光与参考光，以扣除约 1% 的激光功率抖动。</p></div>
+      <div class="card"><div class="num">SIGNAL</div><h3>ΔA 的四类来源</h3><p>基态漂白（GSB）与受激辐射（SE）给出负 ΔA；激发态吸收（ESA）与光诱导吸收（PIA）给出正 ΔA。II-VI 量子点价带简并度远大于导带，漂白主要由电子贡献，故可提取电子动力学。</p></div>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-top:24px">
+      <figure class="fig" data-cap="图2.4 电激发瞬态吸收光谱仪及其测试内容示意图：电脉冲（1 kHz、10 µs）泵浦器件，超连续白光（2 kHz）探测，可同时获得光谱与动力学信息。">
+        <img src="assets/figures/fig2-04-eeta.png" alt="电激发瞬态吸收光谱仪示意图" loading="lazy">
+        <figcaption><b>图2.4</b> 电激发瞬态吸收光谱仪及其测试内容</figcaption>
+      </figure>
+      <figure class="fig" data-cap="图2.10 红色 QD-LED 在 3 V、10 µs 电脉冲激发下的瞬态吸收光谱测量：（a）时间分辨电激发瞬态吸收光谱；（b）8 µs 时波长-ΔA 曲线；（c）647 nm 处基态漂白信号随时间变化。">
+        <img src="assets/figures/fig2-10-eeta-data.png" alt="红色 QD-LED 电激发瞬态吸收光谱" loading="lazy">
+        <figcaption><b>图2.10</b> 红色 QD-LED 在 3 V / 10 µs 下的瞬态吸收光谱</figcaption>
+      </figure>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-top:26px">
+      <div class="card">
+        <div class="num">ΔA 怎么算</div>
+        <h3>从朗伯-比尔定律到"漂白 + 斯塔克"</h3>
+        <p>探测光经铝电极反射后两次穿过量子点层，因此吸收项系数为 2。把吸收截面 σ<sub>E</sub> 对电场做泰勒展开后，ΔA 表达式自然分成三项：</p>
+        <div class="formula">ΔA = 2[σ<sub>E</sub>(1 − N<sub>e</sub>) − σ]·n<sub>QD</sub>l<sub>QD</sub> / 2.303</div>
+        <p>第一项正比于载流子填充（漂白），第二、三项分别是一阶与二阶斯塔克效应（电场）。由于各功能层吸收峰一般分开，只要选对波长，就能把不同功能层的信号分离出来——这正是本文能做"分层诊断"的原因。</p>
+      </div>
+      <div class="card">
+        <div class="num">配套测试体系</div>
+        <h3>五种手段互相印证</h3>
+        <ul style="color:var(--text-dim);font-size:14.4px;padding-left:18px;margin:0">
+          <li><b>瞬态电致发光（Tr-EL）</b>：五个阶段（延时、快速上升、近饱和上升、饱和、衰减），测发光启亮延时</li>
+          <li><b>瞬态电流（Tr-C）</b>：呈电容充放电特征，正反向峰值不对称说明界面累积载流子被复合消耗</li>
+          <li><b>瞬态荧光寿命（Tr-PL）</b>：判断量子点自身复合速率是否变化</li>
+          <li><b>电吸收（EA）</b>：以 1 kHz 正弦电压叠加直流偏压调制内部电场，低噪声读取斯塔克信号</li>
+          <li><b>电容-电压（C-V）</b>：正向电容主要由 HTL/QD 异质结决定，用于追踪界面载流子积累</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-top:26px">
+      <figure class="fig" data-cap="图2.2 瞬态吸收光谱仪示意图：泵浦光与探测光经分束后分别作用于样品，通过差分吸收获得不同时刻的瞬态吸收光谱。">
+        <img src="assets/figures/fig2-02-ta-setup.png" alt="瞬态吸收光谱仪示意图" loading="lazy">
+        <figcaption><b>图2.2</b> 瞬态吸收光谱仪示意图</figcaption>
+      </figure>
+      <figure class="fig" data-cap="图2.13 蒙特-卡洛量子点激子复合模型示意图：电子与空穴按概率随机注入分立的量子点，统计剩余载流子数与激子产生速率。">
+        <img src="assets/figures/fig2-13-montecarlo.png" alt="蒙特-卡洛量子点激子复合模型" loading="lazy">
+        <figcaption><b>图2.13</b> 蒙特-卡洛量子点激子复合模型</figcaption>
+      </figure>
+    </div>
+
+    <div class="chart-card reveal" style="margin-top:26px">
+      <h4>器件工作模型拟合结果</h4>
+      <p class="hint">以 3 V、1 kHz、10 µs 脉冲数据拟合 Tr-EL 与 EE-TA 公式（忽略空穴泄漏，令 k₂ = 0）。</p>
+      <div class="bars">
+        <div class="bar-row"><span class="bl">电子注入时间</span><span class="bar-track"><span class="bar-fill" data-w="18"></span></span><span class="bv">&lt;100 ns</span></div>
+        <div class="bar-row"><span class="bl">启亮延时（空穴）</span><span class="bar-track"><span class="bar-fill warm" data-w="30"></span></span><span class="bv">≈600 ns</span></div>
+        <div class="bar-row"><span class="bl">空穴注入饱和</span><span class="bar-track"><span class="bar-fill" data-w="55"></span></span><span class="bv">≈3 µs</span></div>
+        <div class="bar-row"><span class="bl">脉冲后衰减</span><span class="bar-track"><span class="bar-fill violet" data-w="42"></span></span><span class="bv">≈2 µs</span></div>
+        <div class="bar-row"><span class="bl">电子漏电概率 k₁</span><span class="bar-track"><span class="bar-fill warm" data-w="10"></span></span><span class="bv">0.1</span></div>
+      </div>
+    </div>
+
+    <div class="note reveal" style="margin-top:20px">
+      <b>模型的诚实之处：</b>Tr-EL 测到的是相对发光强度，因此拟合只能给出空穴注入动力学，无法给出量子点中空穴的绝对数量；缺陷效应也尚未纳入模型。论文明确指出需要绝对光强/光子数测量与模型优化——这一点在第六章展望中继续被提及。
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 发现一 ============ -->
+<section id="finding-lowheat">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index">06 / Finding 01 · 第3章</div>
+      <h2 class="sec-title">少放几个发光中心：低电压、高亮度、几乎不发热</h2>
+      <p class="sec-sub">产热功率 Q = VI − Nℏω。带隙电压以上器件只制热，同一亮度下电压越高发热越多；带隙电压以下则亮度越强制冷越强。所以出路只有一条：<b>在低驱动电压下把亮度做上去</b>。</p>
+    </div>
+
+    <div class="grid g3 reveal">
+      <div class="card"><div class="num">策略</div><h3>大尺寸单层全梯度合金量子点</h3><p>两次分开注入阴离子前驱体的一锅法：先注硒得到约 17 nm 大量子点，再注硫形成最外层富 ZnS 保护壳，无需中间纯化。Cd 前驱体与 Se 反应活性高于 Zn，渐变 Cd/Zn 比例形成连续渐变能级，最终平均尺寸约 18 nm、PLQY 超 90%。</p></div>
+      <div class="card"><div class="num">原理</div><h3>同样注入电荷，更大的"带电率"</h3><p>半径加倍的六边形密排单层中，量子点由 12 个减为 3 个，电子占据率从 1/12 升到 1/3：激子形成概率与辐射复合速率随之提高，准费米能级劈裂增大，而大量子点振子强度更强、吸光度并不下降。</p></div>
+      <div class="card"><div class="num">验证</div><h3>劈裂高出近 100 meV</h3><p>电激发瞬态吸收光谱显示三种器件 ΔA 峰位都在 645 nm 附近，但大尺寸 FCG-QD 器件的 ΔA 峰值约为小尺寸量子点的 <b>3 倍</b>；结合光激发瞬态吸收标定吸收截面（8.67×10⁻¹⁴ vs 1.38×10⁻¹⁴ cm²），换算出的电子准费米能级劈裂比常规量子点高近 100 meV。</p></div>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-top:26px">
+      <div class="chart-card">
+        <h4>温度与产热：大尺寸器件几乎"不热"</h4>
+        <p class="hint">室温连续点亮 2 h 后的表面温升（红外热成像 / COMSOL 仿真）</p>
+        <canvas data-chart="temp" height="260"></canvas>
+      </div>
+      <div class="chart-card">
+        <h4>亮度-寿命：T95 的跨数量级差距</h4>
+        <p class="hint">不同初始亮度下的 T95（双对数坐标，虚线为按加速因子外推）</p>
+        <canvas data-chart="t95" height="260"></canvas>
+      </div>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-top:26px">
+      <figure class="fig" data-cap="图3.19 （a）红外热成像测得三种器件在室温下连续工作 2 h 后的表面温度；（b）不同亮度下三种器件的产热功率；（c）实验与模拟的表面温度对比。">
+        <img src="assets/figures/fig3-19-thermal.png" alt="红外热成像与产热功率" loading="lazy">
+        <figcaption><b>图3.19</b> 红外热成像：不同亮度下的表面温度与产热功率</figcaption>
+      </figure>
+      <figure class="fig" data-cap="图3.20 （a）（b）3000 cd m⁻² 下大尺寸 FCG-QD 与常规量子点器件点亮 10 h 后的表面温度模拟；（c）表面温度随时间变化，模拟与实验相互印证。">
+        <img src="assets/figures/fig3-20-thermal-sim.png" alt="器件表面温度模拟" loading="lazy">
+        <figcaption><b>图3.20</b> 3000 cd m⁻² 下的表面温度模拟与温升曲线</figcaption>
+      </figure>
+      <figure class="fig" data-cap="图3.14 （a）三种器件在不同电压下的电激发瞬态吸收光谱；（b）单层大尺寸 FCG-QD 与单层常规量子点薄膜的归一化吸收谱。">
+        <img src="assets/figures/fig3-14-eeta-compare.png" alt="三种器件的电激发瞬态吸收光谱" loading="lazy">
+        <figcaption><b>图3.14</b> 三种器件的电激发瞬态吸收光谱与吸收谱</figcaption>
+      </figure>
+      <figure class="fig" data-cap="图3.1 （a）LED 作为电致发光制冷的示意图；（b）预测的卡诺极限 SCOP 随有源区带隙与温度的变化。">
+        <img src="assets/figures/fig3-01-elc.png" alt="电致发光制冷" loading="lazy">
+        <figcaption><b>图3.1</b> 电致发光制冷（ELC）原理与卡诺极限 SCOP</figcaption>
+      </figure>
+    </div>
+
+    <div class="grid g4 reveal" style="margin-top:26px">
+      <div class="stat"><div class="v">1100 / 6000</div><div class="k">cd m⁻² 亮度</div><div class="c">分别在 100% 与 115% 带隙电压下实现</div></div>
+      <div class="stat"><div class="v">23.8<small>%</small></div><div class="k">峰值 EQE（2 V）</div><div class="c">常规单层器件仅 14.5%</div></div>
+      <div class="stat"><div class="v">780<small>h</small></div><div class="k">T95 @11 249 cd m⁻²</div><div class="c">常规器件同亮度仅约 48 h</div></div>
+      <div class="stat"><div class="v">912 300<small>h</small></div><div class="k">绿光器件等效 T95</div><div class="c">100 cd m⁻² 外推；蓝光为 4600 h</div></div>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-top:26px">
+      <figure class="fig" data-cap="图3.25 绿色（a）与蓝色（b）大尺寸 FCG-QD 器件的亮度随运行时间变化；加速因子分别为 1.82（c）与 1.87（d）。">
+        <img src="assets/figures/fig3-25-green-blue-life.png" alt="绿色与蓝色器件寿命" loading="lazy">
+        <figcaption><b>图3.25</b> 绿色与蓝色大尺寸 FCG-QD 器件的寿命与加速因子</figcaption>
+      </figure>
+      <div class="card">
+        <div class="num">机理小结</div>
+        <h3>为什么"降电压 + 高效率"能同时换来长寿命</h3>
+        <p>器件退化被认为源于量子点配体与空穴传输层的电化学不稳定性，而这些化学反应的速率可以通过<b>降低驱动电压与温度</b>来减缓。</p>
+        <p style="margin-top:10px">此前用蓝宝石、硅基板改善散热虽提高寿命，却因驱动电压未有效降低而功率转换效率依旧偏低。本文同时降低驱动电压并提高功率转换效率，减少焦耳热与温升，从而缓解热致快速老化：<b>1000 cd m⁻² 下 T95 超过 48 000 h，24 个器件平均约 43 000 h</b>。</p>
+        <p style="margin-top:10px">该策略随后推广到绿光（PLQY&gt;90%）与蓝光（PLQY&gt;70%）大尺寸量子点器件：带隙电压下分别实现约 3100 与 260 cd m⁻² 亮度，1000 cd m⁻² 下 T95 约 13 800 h 与 63 h。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 发现二 ============ -->
+<section id="finding-rolloff">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index">07 / Finding 02 · 第4章</div>
+      <h2 class="sec-title">效率滚降的真凶：不是俄歇，也不是电场，而是泄漏的高能电子</h2>
+      <p class="sec-sub">室外高亮度显示与照明要求器件在 3000 cd m⁻² 下仍高效，但电流一大效率就掉。论文逐个排查了四种候选机制，最后用单电子器件与低温实验锁定了答案。</p>
+    </div>
+
+    <div class="grid g4 reveal">
+      <div class="card"><div class="num">排除 ①</div><h3>焦耳热</h3><p>滚降起始时电流并不高，难以产生足以猝灭发光的热量；热效应在低电流密度（1–2 A cm⁻²）区间一般认为可忽略。</p></div>
+      <div class="card"><div class="num">排除 ②</div><h3>俄歇复合</h3><p>滚降时平均电子数仅 0.1–0.3，双电子占据率 1.6%–3.3%，且呈单激子衰减动力学，概率太低不足以主导滚降。</p></div>
+      <div class="card"><div class="num">排除 ③</div><h3>电场诱导猝灭</h3><p>7 V 正偏的斯塔克效应仅相当于 −0.2 至 −0.5 V 反偏，对应 PL 强度下降不到 1%。</p></div>
+      <div class="card" style="border-color:rgba(255,95,126,.45);background:rgba(255,95,126,.07)"><div class="num" style="color:var(--red)">锁定 ④</div><h3>高能电子泄漏</h3><p>电子因声子瓶颈滞留高能级，电压越高高能电子占比越大，越容易越过势垒泄漏进空穴传输层。</p></div>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-top:26px">
+      <div class="card">
+        <div class="num">关键证据</div>
+        <h3>单电子器件：没有空穴，电流只能是漏电</h3>
+        <p>用吸收峰更短的 PFDP 作空穴传输层制备 <b>ITO/ZnO/TFB/QD/ZnMgO/Al 单电子器件</b>，器件中不注入空穴，因此电流完全由电子从量子点泄漏到 TFB 贡献。结果很清晰：三种量子点中<b>电子限域能力越强，高能电子漂白信号越强、漏电流越小</b>——它们都能把电子注入高能态，但只有强限域的量子点能留住它们。</p>
+      </div>
+      <div class="card">
+        <div class="num">关键证据</div>
+        <h3>低温实验：把弛豫"冻住"</h3>
+        <p>在 8 K、100 K、200 K、295 K 下测器件 3：200 K 以下电子浓度显著上升、高能级信号明显增长，低温下除基态外还可见 <b>三个分立高能级</b>，同时瞬态电流稳定值下降。在 2–3 V 不发光电压区间同样看到该趋势，从而排除了空穴注入的影响。</p>
+        <p style="margin-top:10px">结论：<b>生长更高势垒的壳层（如 ZnS）限域高能态电子</b>，同时改善空穴注入，可有效减轻效率滚降。</p>
+      </div>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-top:26px">
+      <figure class="fig" data-cap="图4.2 QD-LED 中效率下降的三种可能原因：① 两个以上电子与空穴相遇发生非辐射俄歇复合；② 强电场减小电子空穴波函数重合、增加载流子与表面缺陷耦合；③ 电子泄漏。">
+        <img src="assets/figures/fig4-02-rolloff-origins.png" alt="效率滚降的三种可能原因" loading="lazy">
+        <figcaption><b>图4.2</b> 效率滚降的三种候选机制：俄歇 / 强电场 / 电子泄漏</figcaption>
+      </figure>
+      <figure class="fig" data-cap="图4.3 （a）三种量子点（CdSe/CdS、CdSe/ZnSe、CdZnSeS/ZnS）的电致发光光谱；（b）三种器件归一化外量子效率对比，电子限域能力递增、滚降依次减弱。">
+        <img src="assets/figures/fig4-03-three-qds.png" alt="三种量子点与器件的滚降对比" loading="lazy">
+        <figcaption><b>图4.3</b> 三种限域能力递增的量子点器件：滚降依次减弱</figcaption>
+      </figure>
+      <figure class="fig" data-cap="图4.16 （a）三种量子点制备的单电子器件电压-电流曲线；（b）（c）（d）三种量子点在单电子器件中不同驱动电压下的电激发瞬态吸收光谱。">
+        <img src="assets/figures/fig4-16-single-carrier.png" alt="单电子器件测试" loading="lazy">
+        <figcaption><b>图4.16</b> 单电子器件：限域越强，漏电流越小</figcaption>
+      </figure>
+      <figure class="fig" data-cap="图4.18 8 K、100 K、200 K 及 295 K 温度下器件 3 在不同电压下的电激发瞬态吸收光谱：低温下高能级电子浓度显著上升。">
+        <img src="assets/figures/fig4-18-lowtemp.png" alt="低温电激发瞬态吸收光谱" loading="lazy">
+        <figcaption><b>图4.18</b> 低温（8–295 K）下的电激发瞬态吸收光谱</figcaption>
+      </figure>
+    </div>
+
+    <div class="chart-card reveal" style="margin-top:26px">
+      <h4>把滚降相关判据放在一起看</h4>
+      <p class="hint">前四项是被排除或被证明可忽略的量级，最后一项是实测的漏电占比。</p>
+      <div class="bars">
+        <div class="bar-row"><span class="bl">双电子占据率（起始）</span><span class="bar-track"><span class="bar-fill warm" data-w="6"></span></span><span class="bv">≈1.6%</span></div>
+        <div class="bar-row"><span class="bl">双电子占据率（7 V）</span><span class="bar-track"><span class="bar-fill warm" data-w="12"></span></span><span class="bv">3.3%</span></div>
+        <div class="bar-row"><span class="bl">7 V 斯塔克等效反偏</span><span class="bar-track"><span class="bar-fill" data-w="10"></span></span><span class="bv">−0.2~−0.5 V</span></div>
+        <div class="bar-row"><span class="bl">对应 PL 强度下降</span><span class="bar-track"><span class="bar-fill" data-w="4"></span></span><span class="bv">&lt;1%</span></div>
+        <div class="bar-row"><span class="bl">平均电子数（高电压）</span><span class="bar-track"><span class="bar-fill violet" data-w="30"></span></span><span class="bv">0.1–0.3</span></div>
+        <div class="bar-row"><span class="bl">电子漏电概率 k₁</span><span class="bar-track"><span class="bar-fill" data-w="10"></span></span><span class="bv">0.1</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 发现三 ============ -->
+<section id="finding-blue">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index">08 / Finding 03 · 第5章</div>
+      <h2 class="sec-title">蓝光为什么短命：泄漏的电子把空穴传输层"打坏了"</h2>
+      <p class="sec-sub">蓝光 QD-LED 的 T50 只有 80 377 h，而红光已达 1.25 亿小时。论文用电激发瞬态吸收光谱做"原位无损体检"，把退化过程一步步拆开。</p>
+    </div>
+
+    <div class="timeline reveal">
+      <div class="tl-item"><span class="tl-tag">STEP 01</span><h4>退化前后，电子侧毫无变化</h4><p>在 5 V 加速退化至发光强度降为初始的 90%、75%、50% 各阶段，量子点电子漂白信号强度、峰形、注入速率以及荧光寿命均无明显变化——电子传输层没有损坏。</p></div>
+      <div class="tl-item"><span class="tl-tag">STEP 02</span><h4>变慢的是空穴</h4><p>归一化瞬态电致发光下降沿不变（复合速率不变），上升沿明显变慢：达到稳定发光的时间从 <b>2480 ns 延长到 4060 ns</b>。空穴是少数载流子，说明退化中空穴注入受阻。</p></div>
+      <div class="tl-item"><span class="tl-tag">STEP 03</span><h4>斯塔克效应点名"受害者"</h4><p>反偏压下 421 nm（TFB）与 482 nm（量子点）出现波长分辨的斯塔克信号。退化后相同反偏下 <b>TFB 的斯塔克信号变小、量子点几乎不变</b>。斯塔克信号正比于 Imχ₃×E²，χ₃ 反映材料储存与输运载流子的能力——空穴传输层被损坏了。</p></div>
+      <div class="tl-item"><span class="tl-tag">STEP 04</span><h4>电容与仿真补充证据</h4><p>退化后峰值电容下降、电容击穿电压升高，说明同一电压下总载流子密度降低（电子不变 → 空穴减少）。Silvaco TCAD 仿真在空穴传输层引入缺陷态后，空穴浓度与电场都下降、电子浓度无明显变化，与实验一致：<b>断裂的 C–N / C–S / C–P 键在能隙中生成俘获空穴的缺陷态</b>。</p></div>
+      <div class="tl-item"><span class="tl-tag">STEP 05</span><h4>单载流子器件锁定元凶：电子</h4><p>单电子器件中 PFDP 的斯塔克信号在 4 V 恒压下随时间衰减，而单空穴器件光谱几乎不变。破坏空穴传输层的正是从量子点泄漏出来的<b>高平均能量电子</b>。</p></div>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-top:26px">
+      <figure class="fig" data-cap="图5.6 （a）使用 CdZnS/ZnS 量子点的蓝光 QD-LED 在 5 V 恒压下发光强度随时间变化的归一化谱图；（b）QD-LED 退化的可能机制。">
+        <img src="assets/figures/fig5-06-degradation.png" alt="蓝光器件退化过程与机制" loading="lazy">
+        <figcaption><b>图5.6</b> 5 V 恒压下的亮度衰减与退化机制推测</figcaption>
+      </figure>
+      <figure class="fig" data-cap="图5.9 （a）退化前后 −5 V 下的电激发瞬态吸收光谱；（b）退化各阶段量子点与 TFB 的斯塔克效应信号随电压的变化；（c）退化前后 −5 V 下基态斯塔克效应动力学。">
+        <img src="assets/figures/fig5-09-stark.png" alt="退化前后的斯塔克效应" loading="lazy">
+        <figcaption><b>图5.9</b> 斯塔克效应显示 TFB（空穴传输层）信号在退化后变小</figcaption>
+      </figure>
+      <figure class="fig" data-cap="图5.13 （a）空穴传输层存在与不存在缺陷时器件中载流子浓度仿真；（b）空穴传输层存在与不存在缺陷时器件中电场分布仿真。">
+        <img src="assets/figures/fig5-13-simulation.png" alt="缺陷态仿真" loading="lazy">
+        <figcaption><b>图5.13</b> 缺陷态仿真：空穴浓度与电场同时下降</figcaption>
+      </figure>
+      <figure class="fig" data-cap="图5.26 （a）471 nm CdSeZn 量子点的吸收/电致发光光谱，插图为 STEM 图像；（b）蓝光 QD-LED 的 TEM 图像；（c）电流-电压-发光光子数曲线；（d）光子数-外量子效率曲线。">
+        <img src="assets/figures/fig5-26-cdsezn.png" alt="CdSeZn 量子点与器件" loading="lazy">
+        <figcaption><b>图5.26</b> 用于退化研究的 CdSeZn 量子点与蓝光器件</figcaption>
+      </figure>
+    </div>
+
+    <div class="sec-head reveal" style="margin-top:56px">
+      <h2 class="sec-title" style="font-size:clamp(22px,2.6vw,30px)">两条改善路线</h2>
+      <p class="sec-sub">既然元凶是高能电子泄漏，那么"挡住它"或者"降低它的能量"都能延长寿命。</p>
+    </div>
+
+    <div class="grid g2 reveal">
+      <div class="card" style="border-color:rgba(53,224,138,.35)">
+        <div class="num" style="color:var(--green)">路线 A · 加一层 PBO</div>
+        <h3>高刚性、能级匹配的中间层</h3>
+        <p>PBO 空穴迁移率与 TFB 相近；HOMO 为 <b>5.85 eV</b>（比 TFB 低 0.51 eV），正好位于量子点与 TFB 之间，缓解能级台阶；LUMO 为 <b>−2.69 eV</b>（比量子点导带高约 1 eV），把电子挡在发光层内。它还具备更好的电化学与热稳定性、更平整的表面。</p>
+        <p style="margin-top:10px">结果：458 nm 纯蓝器件漏电降低、空穴注入加快，<b>峰值 EQE 23%</b>（约为无 PBO 器件的 2 倍），<b>100 cd m⁻² 下 T50 达 41 022 h</b>，T95 为 5264 h；40 个器件 EQE 平均 20.8%、标准差 2.3%。</p>
+      </div>
+      <div class="card" style="border-color:rgba(47,123,255,.35)">
+        <div class="num" style="color:var(--blue)">路线 B · 降低电子平均能量</div>
+        <h3>把导带整体压下来</h3>
+        <p>先通过增加发光波长整体降低导带能级，发现器件操作寿命随波长增加而减小、与带隙呈指数关系。随后在相同发光波长下合成 PLQY 接近 100%、发光峰 475 nm 的 <b>CdSeS/ZnSeS/ZnS</b> 量子点，其导带能级比 CdSeZn/ZnSeS/ZnS 低 <b>0.3 eV</b>，实测电子平均能量差值更大。</p>
+        <p style="margin-top:10px">结果：器件总电流变化不大而复合电流增大，PFDP 漂白信号衰减降低——<b>峰值 EQE 25%、T50 达 95 161 h</b>，约为 CdSeZn 器件的 9 倍，是当时溶液法蓝光 QD-LED 的最高值。</p>
+      </div>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-top:26px">
+      <figure class="fig" data-cap="图5.20 使用 PBO 作为中间层的纯蓝光 QD-LED 结构示意图及截面 TEM 图像：ITO/PEDOT:PSS(18 nm)/TFB(18 nm)/PBO(10 nm)/QD(32 nm)/ZnMgO(50 nm)/Al(100 nm)。">
+        <img src="assets/figures/fig5-20-pbo-tem.png" alt="PBO 器件结构与 TEM" loading="lazy">
+        <figcaption><b>图5.20</b> PBO 中间层器件结构与截面 TEM</figcaption>
+      </figure>
+      <figure class="fig" data-cap="图5.21 （a）不同驱动电压下的电致发光光谱；（b）两种器件的电流密度-亮度-电压曲线；（c）有无 PBO 中间层的 EQE-电压曲线对比；（d）40 个器件的 EQE 统计直方图。">
+        <img src="assets/figures/fig5-21-pbo-perf.png" alt="PBO 器件性能" loading="lazy">
+        <figcaption><b>图5.21</b> PBO 器件性能：EQE 提升约 2 倍、统计重复性好</figcaption>
+      </figure>
+      <figure class="fig" data-cap="图5.22 （a）有无 PBO 器件的实际寿命对比（L/L₀ 随时间变化）；（b）寿命加速因子拟合 n≈1.78；（c）25 个器件的使用寿命统计直方图；（d）PBO 器件 12 h 循环操作寿命。">
+        <img src="assets/figures/fig5-22-pbo-life.png" alt="PBO 器件寿命" loading="lazy">
+        <figcaption><b>图5.22</b> 寿命对比、加速因子与循环操作稳定性</figcaption>
+      </figure>
+      <figure class="fig" data-cap="图5.40 （a）使用 CdSeS 量子点的器件在 4 V 恒压下电致发光强度随时间的变化；（b）(c) 不同时刻的正/负电激发瞬态吸收光谱；（d）拟合曲线；（e）(f) 分解出的漂白信号与斯塔克效应信号。">
+        <img src="assets/figures/fig5-40-cdses.png" alt="CdSeS 器件退化过程" loading="lazy">
+        <figcaption><b>图5.40</b> CdSeS 器件在恒压退化过程中的光谱演化</figcaption>
+      </figure>
+    </div>
+
+    <div class="chart-card reveal" style="margin-top:26px">
+      <h4>蓝光寿命的天花板被抬高了两次</h4>
+      <p class="hint">100 cd m⁻² 初始亮度下的 T50（对数刻度）。文献蓝光值为论文引用的当时最好水平。</p>
+      <canvas data-chart="blue" height="240"></canvas>
+    </div>
+
+    <div class="chart-card reveal" style="margin-top:22px">
+      <h4>外量子效率对比</h4>
+      <p class="hint">论文中几类器件的峰值外量子效率（EQE）。</p>
+      <canvas data-chart="eqe" height="240"></canvas>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 脉络 ============ -->
+<section id="timeline-sec" class="tight">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index">09 / Structure</div>
+      <h2 class="sec-title">全文脉络：从"造仪器"到"改器件"</h2>
+      <p class="sec-sub">六章之间是一条清晰的逻辑链：先解决"看不见"的问题，再用它解释现象，最后落到器件改善。</p>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-item"><span class="tl-tag">第 1 章</span><h4>绪论：把问题定义清楚</h4><p>梳理 QD-LED 的显示技术背景与商业化六大挑战（功耗、内量子效率、外耦合、蓝光寿命、无镉化、一致性稳定性），归纳电致发光的两条路径、效率滚降的三种假说与正/负向老化，指出"机理不清"才是试错式优化的根源。</p></div>
+      <div class="tl-item"><span class="tl-tag">第 2 章</span><h4>造仪器、建模型</h4><p>发明电激发瞬态吸收光谱仪（EE-TA），结合瞬态电致发光、瞬态电流、瞬态荧光、电吸收与电容-电压形成测试体系；提出蒙特-卡洛量子点激子复合模型并搭建器件运行模型，拟合出电子漏电概率 k₁ = 0.1。</p></div>
+      <div class="tl-item"><span class="tl-tag">第 3 章</span><h4>低产热：增加费米能级劈裂</h4><p>推导出亮度与发光中心密度成反比，用大尺寸单层全梯度合金量子点提高准费米能级劈裂（实测高近 100 meV），在低电压下实现高亮度与极低产热，1000 cd m⁻² 下 T95 超过 48 000 h。</p></div>
+      <div class="tl-item"><span class="tl-tag">第 4 章</span><h4>效率滚降：抓到高能电子泄漏</h4><p>排除焦耳热、俄歇复合与电场猝灭，用单电子器件与低温 EE-TA 证明高能态电子泄漏是滚降主因，并提出用更高势垒壳层（ZnS）限域高能电子。</p></div>
+      <div class="tl-item"><span class="tl-tag">第 5 章</span><h4>蓝光退化：定位到空穴传输层</h4><p>证明退化表相是空穴注入受阻、本质是泄漏电子损坏空穴传输层并生成俘获空穴的缺陷态；用 PBO 中间层与低导带 CdSeS 量子点两条路线分别实现 23% EQE / 41 022 h T50 与 25% EQE / 95 161 h T50。</p></div>
+      <div class="tl-item"><span class="tl-tag">第 6 章</span><h4>总结与展望：指向电致发光制冷</h4><p>总结机理图景，指出未来需继续提升低电压亮度与光外耦合效率以实现电致发光制冷（需以带隙 35% 以下的电压实现 35% EQE）、根本解决漏电，并满足蓝光 T95 &gt; 200 h 的商业化最低需求。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 原文图表 ============ -->
+<section id="gallery">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index">10 / Figures</div>
+      <h2 class="sec-title">原文图表</h2>
+      <p class="sec-sub">以下图片均直接取自论文原文（按章顺序排列），点击可放大。图号与图题引用自论文图注。</p>
+    </div>
+    <div class="fig-grid reveal">
+      <figure class="fig" data-cap="图1.19 负向老化/退化现象：（a）蓝色 QD-LED 寿命测试；（b）红色 QD-LED 寿命测试；（c）单电子器件的电流-电场特性曲线。">
+        <img src="assets/figures/fig1-19-aging.png" alt="负向老化现象" loading="lazy">
+        <figcaption><b>图1.19</b> 负向老化/退化现象</figcaption>
+      </figure>
+      <figure class="fig" data-cap="图2.1 传统无机半导体 LED（a）与 QD-LED（b）电激发下激子形成过程对比：量子点是分散的发光中心。">
+        <img src="assets/figures/fig2-01-led-vs-qdled.png" alt="LED 与 QD-LED 激子形成对比" loading="lazy">
+        <figcaption><b>图2.1</b> 传统 LED 与 QD-LED 的激子形成过程对比</figcaption>
+      </figure>
+      <figure class="fig" data-cap="图4.2 QD-LED 中效率下降的三种可能原因：俄歇复合、强电场、电子泄漏。">
+        <img src="assets/figures/fig4-02-rolloff-origins.png" alt="效率滚降机制" loading="lazy">
+        <figcaption><b>图4.2</b> 效率滚降的三种候选机制</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11 术语 ============ -->
+<section id="glossary" class="tight">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index">11 / Glossary</div>
+      <h2 class="sec-title">术语表</h2>
+      <p class="sec-sub">读懂这篇论文需要的十来个小概念。</p>
+    </div>
+    <dl class="gloss reveal">
+      <div class="item"><dt>QD-LED<span>quantum-dot LED</span></dt><dd>以胶体量子点为发光层的电致发光器件，兼具有机物的溶液加工性与无机半导体的稳定性与色纯度。</dd></div>
+      <div class="item"><dt>量子限域效应<span>quantum confinement</span></dt><dd>量子点在三维方向束缚电子与空穴，尺寸越小带边跃迁能量越高，因而发光波长可由粒径调谐。</dd></div>
+      <div class="item"><dt>准费米能级劈裂<span>E<sub>FS</sub></span></dt><dd>电子与空穴准费米能级之差。它决定发射光强，劈裂越大、发光越强；可由注入电荷与发光中心密度调控。</dd></div>
+      <div class="item"><dt>基态漂白<span>GSB</span></dt><dd>激发态布居增加导致基态吸收减少，在瞬态吸收谱上表现为负 ΔA；在量子点中主要由电子贡献，是读取电子浓度的标尺。</dd></div>
+      <div class="item"><dt>斯塔克效应<span>Stark effect</span></dt><dd>外加电场改变量子点振子强度，使吸收截面依赖于电场。信号正比于 Imχ₃×E²，可用于表征材料储存与输运载流子的能力。</dd></div>
+      <div class="item"><dt>声子瓶颈<span>phonon bottleneck</span></dt><dd>高能态电子因缺少可接受能量的声子通道而弛豫缓慢，长时间停留在高能级，是电子泄漏的前提。</dd></div>
+      <div class="item"><dt>俄歇复合<span>Auger recombination</span></dt><dd>多载流子占据同一量子点时，复合能量转移给第三个载流子并最终以热耗散，不发光。本文用平均电子数与泊松统计证明其概率很低。</dd></div>
+      <div class="item"><dt>效率滚降<span>efficiency roll-off</span></dt><dd>电流（电压）增大时外量子效率下降的现象，制约 QD-LED 在高亮度显示与照明中的应用。</dd></div>
+      <div class="item"><dt>Förster 共振能量转移<span>FRET</span></dt><dd>供体与受体间的非辐射能量传递，有效距离约 10 nm。在 QD-LED 中既可能让传输层激子把能量传给量子点，也可能造成 PL 猝灭。</dd></div>
+      <div class="item"><dt>带尾态<span>band tail states</span></dt><dd>有机半导体能量无序造成的能隙内态，为电子提供越过势垒泄漏的通道，是 PL 与 EL 效率差异的来源之一。</dd></div>
+      <div class="item"><dt>T50 / T95</dt><dd>亮度衰减到初始值 50% / 95% 所需时间，是衡量器件工作寿命的常用指标，需注明初始亮度与测试条件。</dd></div>
+      <div class="item"><dt>加速因子<span>n</span></dt><dd>寿命与初始亮度满足 L₀ⁿ·T = 常数，据此可由高亮度短时测试外推低亮度下的长寿命；本文拟合得 n≈1.71–1.87。</dd></div>
+      <div class="item"><dt>外量子效率<span>EQE</span></dt><dd>器件发射到外部的光子数与注入电子数之比，受内量子效率与外耦合效率共同限制。</dd></div>
+      <div class="item"><dt>能量转化效率<span>PCE</span></dt><dd>输出光功率与输入电功率之比。本文器件在 1000–6000 cd m⁻² 范围内保持 21–23%。</dd></div>
+    </dl>
+  </div>
+</section>
+
+<!-- ============ 12 结论与展望 ============ -->
+<section id="outlook">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <div class="sec-index">12 / Conclusion</div>
+      <h2 class="sec-title">结论与展望</h2>
+    </div>
+    <blockquote class="quote reveal" style="margin:0 0 26px">
+      电子泄漏是效率滚降与蓝光退化的共同主线：滚降源于高能态电子因声子瓶颈不弛豫而泄漏，蓝光退化源于泄漏电子损坏空穴传输层——限域高能电子（更高势垒壳层、降低导带能级）可以同时改善两者。
+    </blockquote>
+
+    <div class="grid g3 reveal">
+      <div class="card"><div class="num">结论 01</div><h3>方法学先行</h3><p>自主研发的 EE-TA 结合瞬态电流与瞬态电致发光，配合微观工作过程计算模型，使各功能层的载流子动力学、平衡浓度、斯塔克效应与漏电影响得以清晰表征。</p></div>
+      <div class="card"><div class="num">结论 02</div><h3>低产热与长寿命可兼得</h3><p>以大尺寸单层全梯度合金量子点提高量子点平均电子数，在低驱动电压下获得高亮度：红光器件 1000–6000 cd m⁻² 下 PCE 达 21–23%，1000 cd m⁻² 下 T95 达 48 000 h。</p></div>
+      <div class="card"><div class="num">结论 03</div><h3>界面与能级工程是蓝光的解</h3><p>PBO 中间层实现 23% 峰值 EQE 与 41 000 h 以上 T50；降低电子平均能量 0.3 eV 以上使 T50 达 95 161 h——均为当时全溶液法纯蓝 QD-LED 的最高水平。</p></div>
+    </div>
+
+    <div class="grid g2 reveal" style="margin-top:26px">
+      <div class="card"><div class="num">展望 01</div><h3>冲击电致发光制冷</h3><p>目前内量子效率已超过 95%，提升光外耦合效率是继续提高 EQE 的有效方案。基于现在 35% 左右的峰值 EQE，若要实现 QD-LED 电致发光制冷，需要<b>以带隙 35% 以下的电压实现 35% 的外量子效率</b>——进一步提升低电压亮度（例如继续增大量子点尺寸）是可行方向。</p></div>
+      <div class="card"><div class="num">展望 02</div><h3>蓝光商业化的最低门槛</h3><p>理想 QD-LED 的亮度应随电流线性增长、EQE 不随电压或电流变化。高能电子泄漏虽已确认为滚降起源并用量子点限域加以减缓，但漏电尚未根本解决；蓝光仍需满足 <b>T95 &gt; 200 h</b> 的最低需求，可继续降低电子平均能量或改用更稳定的空穴传输层。</p></div>
+    </div>
+
+    <div class="note reveal" style="margin-top:26px">
+      本网站是对学位论文《胶体量子点发光二极管发光机理研究》（中国科学技术大学，凝聚态物理，2024 年 4 月 2 日，共 143 页）内容的可视化整理，所有数据、图注与结论均取自论文原文，未作推断性补充；论文中的图片版权归原作者与培养单位所有，此处仅用于学习交流。
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap fgrid">
+    <div>
+      <h5>关于这份可视化</h5>
+      <p style="margin:0 0 10px">内容来源：学位论文《胶体量子点发光二极管发光机理研究》（共 6 章、143 页，完成于 2024 年 4 月 2 日）。网站对论文的摘要、图表与关键数据进行结构化呈现，便于快速理解 QD-LED 的发光机理研究脉络。</p>
+      <p style="margin:0;color:var(--text-faint)">纯静态站点：HTML + CSS + 原生 JavaScript，无外部依赖，可离线打开。</p>
+    </div>
+    <div>
+      <h5>快速导航</h5>
+      <ul>
+        <li><a href="#overview">01 速览</a></li>
+        <li><a href="#background">02 研究背景</a></li>
+        <li><a href="#device">03 器件结构</a></li>
+        <li><a href="#mechanism">04 发光机理</a></li>
+        <li><a href="#methods">05 表征手段</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>三大发现</h5>
+      <ul>
+        <li><a href="#finding-lowheat">低产热高亮度器件</a></li>
+        <li><a href="#finding-rolloff">效率滚降的起源</a></li>
+        <li><a href="#finding-blue">蓝光退化与改善</a></li>
+        <li><a href="#timeline-sec">全文脉络</a></li>
+        <li><a href="#glossary">术语表</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox">
+  <span class="close" id="lb-close">×</span>
+  <div>
+    <img id="lb-img" src="" alt="">
+    <div class="cap" id="lb-cap"></div>
+  </div>
+</div>
+
+<script src="assets/main.js"></script>
+</body>
+</html>
